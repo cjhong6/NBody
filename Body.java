@@ -77,5 +77,5 @@ public class Body{
     xxPos = xxPos+dt*xxVel;
     yyPos = yyPos+dt*yyVel;
   }
-  
+
 }
