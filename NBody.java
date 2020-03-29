@@ -29,8 +29,7 @@ public class NBody{
 
     /** Sets both the x-scale and y-scale to the (same) specified range. */
     //public static void setScale(double min, double max)
-    double universeDistance = universeRadius*universeRadius;
-    StdDraw.setScale(-universeDistance, universeDistance);
+    StdDraw.setScale(-universeRadius, universeRadius);
 
     /* Stamps starfield as background */
     StdDraw.picture(0, 75, "./images/starfield.jpg");
@@ -49,6 +48,13 @@ public class NBody{
     String filename = args[2];
     double universeR = readRadius(filename);
     drawUniverse(universeR);
+
+    Body[] bodies = readBodies(filename);
+    for(Body body:bodies){
+      System.out.println(body.xxPos+" ,"+body.yyPos);
+      body.draw();
+    }
+
   }
 
 }

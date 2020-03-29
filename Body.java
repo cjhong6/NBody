@@ -78,4 +78,19 @@ public class Body{
     yyPos = yyPos+dt*yyVel;
   }
 
+  public void draw(){
+    /** Enables double buffering.
+		  * A animation technique where all drawing takes place on the offscreen canvas.
+		  * Only when you call show() does your drawing get copied from the
+		  * offscreen canvas to the onscreen canvas, where it is displayed
+		  * in the standard drawing window. */
+		StdDraw.enableDoubleBuffering();
+
+    /* Stamps body on the canvas */
+    StdDraw.picture(xxPos, yyPos, "./images/"+imgFileName);
+
+    //show the canvas
+    StdDraw.show();
+  }
+
 }
