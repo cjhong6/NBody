@@ -38,6 +38,35 @@ public class NBody{
     StdDraw.show();
   }
 
+  public static void animation(double T, double dt, Body[] bodies){
+    StdDraw.enableDoubleBuffering();
+    double counter = 0;
+
+    while(counter<=T){
+      double[] xForces = new double[bodies.length];
+      double[] yForces = new double[bodies.length];
+
+      for(int i=0; i<xForces.length; i++){
+        xForces[i] = bodies[i].calcNetForceExertedByX(bodies);
+      }
+
+      for(int i=0; i<yForces.length; i++){
+        yForces[i] = bodies[i].calcNetForceExertedByY(bodies);
+      }
+
+      for(int i=0; i<bodies.length; i++){
+        bodies[i].update(dt,xForces[i],yForces[i]);
+      }
+      // StdDraw.picture(0, 75, "./images/starfield.jpg");
+      for(Body body:bodies){
+        body.draw();
+      }
+      StdDraw.show();
+      StdDraw.pause(10);
+      counter+=dt;
+    }
+  }
+
   public static void main(String[] args){
     if (args.length < 3) {
 			System.out.println("Please supply T, dt and filename as a command line argument.");
@@ -51,10 +80,9 @@ public class NBody{
 
     Body[] bodies = readBodies(filename);
     for(Body body:bodies){
-      System.out.println(body.xxPos+" ,"+body.yyPos);
       body.draw();
     }
 
-  }
-
+    animation(T,dt,bodies);
+    }
 }
