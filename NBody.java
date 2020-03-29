@@ -19,6 +19,26 @@ public class NBody{
     return bodies;
   }
 
+  public static void drawUniverse(double universeRadius){
+    /** Enables double buffering.
+		  * A animation technique where all drawing takes place on the offscreen canvas.
+		  * Only when you call show() does your drawing get copied from the
+		  * offscreen canvas to the onscreen canvas, where it is displayed
+		  * in the standard drawing window. */
+		StdDraw.enableDoubleBuffering();
+
+    /** Sets both the x-scale and y-scale to the (same) specified range. */
+    //public static void setScale(double min, double max)
+    double universeDistance = universeRadius*universeRadius;
+    StdDraw.setScale(-universeDistance, universeDistance);
+
+    /* Stamps starfield as background */
+    StdDraw.picture(0, 75, "./images/starfield.jpg");
+
+    //show the canvas
+    StdDraw.show();
+  }
+
   public static void main(String[] args){
     if (args.length < 3) {
 			System.out.println("Please supply T, dt and filename as a command line argument.");
@@ -28,6 +48,7 @@ public class NBody{
     double dt = Double.parseDouble(args[1]);
     String filename = args[2];
     double universeR = readRadius(filename);
+    drawUniverse(universeR);
   }
 
 }
