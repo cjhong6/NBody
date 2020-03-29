@@ -19,4 +19,15 @@ public class NBody{
     return bodies;
   }
 
+  public static void main(String[] args){
+    if (args.length < 3) {
+			System.out.println("Please supply T, dt and filename as a command line argument.");
+			System.exit(0);
+		}
+    double T = Double.parseDouble(args[0]);
+    double dt = Double.parseDouble(args[1]);
+    String filename = args[2];
+    double universeR = readRadius(filename);
+  }
+
 }
